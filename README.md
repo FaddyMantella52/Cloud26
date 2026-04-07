@@ -6,6 +6,20 @@ Lab 2 — Docker Compose: "Black Box" Microservices Debugging
 
 ---
 
+## Summary
+
+A three-tier application consisting of:
+
+- **`api`** — Spring Boot REST API (Java 17, Maven) connected to a PostgreSQL database, exposed on port `8080`
+- **`db`** — PostgreSQL 15 database for persistent storage
+- **`web`** — Static nginx frontend that communicates with the API, exposed on port `80`
+
+Once the stack is running, the UI can be accessed at **[http://localhost:80](http://localhost:80)** and the API directly at **[http://localhost:8080](http://localhost:8080)**.
+
+The frontend displays a single page with a **"Ping API"** button. Clicking it sends a request to `GET /` on the API and shows the JSON response (`{"status": "connected"}`) in green on success, or an error message in red if the API is unreachable.
+
+---
+
 ## TL;DR — Quick Start
 
 ```bash
@@ -73,6 +87,7 @@ docker-compose down -v
 You have inherited a three-tier application (Frontend, API, Database). The previous developer claimed the build "worked
 on their machine," but the stack is currently failing at runtime. You must perform **container debugging** to
 get the system operational.
+
 
 ---
 
