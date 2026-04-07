@@ -4,13 +4,11 @@ services:
     build: ./api
     ports:
       - "8080:8080"
-    depends_on:
-      - db
 
   web:
     build: ./web
     ports:
-      - "8080:80"
+      - "80:80"
     depends_on:
       - api
 
