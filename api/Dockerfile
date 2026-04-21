@@ -17,4 +17,4 @@ COPY --from=build /build/target/*.jar app.jar
 RUN useradd -m developer
 USER developer
 
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "application.jar"]

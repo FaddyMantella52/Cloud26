@@ -5,16 +5,10 @@ services:
     ports:
       - "8080:8080"
 
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
   web:
     build: ./web
     ports:
-      - "8090:80"
+      - "80:80"
     depends_on:
       - api
 
@@ -24,8 +18,3 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: appdb
 
-  watcher:
-    build: ./watcher
-    depends_on:
-      api:
-        condition: service_healthy
