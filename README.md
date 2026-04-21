@@ -24,7 +24,7 @@ The frontend displays a single page with a **"Ping API"** button. Clicking it se
 
 ```bash
 
-# Clone / open the repo, then:
+ # Clone / open the repo, then:
 
 # Attempt the initial (broken) build:
 docker-compose up --build
@@ -61,7 +61,7 @@ docker-compose down -v
 ```text
 .
 ├── api/
-│   ├── Dockerfile                                      
+│   ├── Dockerfile
 │   ├── pom.xml                                         ← Maven build descriptor
 │   └── src/
 │       └── main/
@@ -75,7 +75,7 @@ docker-compose down -v
 │   └── index.html          ← static frontend
 ├── watcher/
 │   └── README.md           ← Part 2 stub — you must implement this
-├── docker-compose.yml      
+├── docker-compose.yml
 ├── .env.example            ← copy to .env and fill in secrets
 └── README.md
 ```
@@ -88,7 +88,6 @@ You have inherited a three-tier application (Frontend, API, Database). The previ
 on their machine," but the stack is currently failing at runtime. You must perform **container debugging** to
 get the system operational.
 
-
 ---
 
 ## 2. Part 1 — Debugging Task
@@ -99,10 +98,10 @@ Database.
 
 Some hints on how to start:
 
-- try to build the ```api``` service first ( check the README inside the folder) to isolate the issue. You will need to
+- try to build the `api` service first ( check the README inside the folder) to isolate the issue. You will need to
   fix the docker build before you can run the container. Find the error message displayed at the build and execute into
   the container to check the file system and permissions.
-- Once the build is successful, try to run the stack through docker-compose and check the logs of the ```api``` service.
+- Once the build is successful, try to run the stack through docker-compose and check the logs of the `api` service.
   You will find some
   error messages related to the database connection. Check the configuration in the `application.properties` file and
   compare it with the environment variables defined in the `docker-compose.yml`. You can also check if the database
@@ -138,9 +137,9 @@ Once the stack is stable, add a **Health Monitoring Service** (`watcher`).
 2. **Language:** Go, Node.js, or a Shell script — your choice.
 3. **Functionality:** The watcher must ping `http://api:8080/` every 10 seconds and log the result with a timestamp.
 4. **Advanced Compose Features:**
-    - Add a `healthcheck` to the `api` service.
-    - Configure `watcher` with `depends_on: api: condition: service_healthy`.
-    - Move `POSTGRES_PASSWORD` out of the YAML into a `.env` file (use `.env.example` as a template).
+   - Add a `healthcheck` to the `api` service.
+   - Configure `watcher` with `depends_on: api: condition: service_healthy`.
+   - Move `POSTGRES_PASSWORD` out of the YAML into a `.env` file (use `.env.example` as a template).
 
 See `watcher/README.md` for detailed hints.
 
@@ -152,5 +151,3 @@ See `watcher/README.md` for detailed hints.
 2. **The Fix Log:** A Markdown table listing each bug, the command you used to diagnose it, and how you fixed it.
 3. **Multi-Stage Build:** The `watcher` Dockerfile **must** use a multi-stage build.
 4. **`.env` File:** A `.env` file (based on `.env.example`) that supplies the database password at runtime.
-
-
